@@ -1,0 +1,737 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Skool Engagement Post Generator – Spiritual Business Skool</title>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --lavender: #E8D5F2;
+    --soft-purple: #C8B5E8;
+    --baby-blue: #D5E8F7;
+    --periwinkle: #B5C8E8;
+    --cream: #FFF9F5;
+    --chartreuse: #C4F000;
+    --dark-ink: #1A1028;
+    --purple-deep: #3C3489;
+    --purple-mid: #534AB7;
+    --text-muted: #6B5E7A;
+    --border: rgba(200, 181, 232, 0.35);
+    --card-bg: rgba(255, 255, 255, 0.75);
+    --radius: 14px;
+    --radius-sm: 8px;
+  }
+
+  body {
+    font-family: 'Montserrat', sans-serif;
+    background: linear-gradient(135deg, #F0E8FA 0%, #E2EEF8 50%, #EAE0F5 100%);
+    min-height: 100vh;
+    color: var(--dark-ink);
+    padding: 2rem 1rem 4rem;
+  }
+
+  .container {
+    max-width: 720px;
+    margin: 0 auto;
+  }
+
+  .header {
+    text-align: center;
+    margin-bottom: 2.5rem;
+  }
+
+  .header .eyebrow {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--purple-mid);
+    margin-bottom: 0.75rem;
+    display: block;
+  }
+
+  .header h1 {
+    font-size: 26px;
+    font-weight: 700;
+    color: var(--dark-ink);
+    line-height: 1.25;
+    margin-bottom: 0.5rem;
+  }
+
+  .header p {
+    font-size: 14px;
+    color: var(--text-muted);
+    font-weight: 400;
+  }
+
+  .accent-dot {
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    background: var(--chartreuse);
+    border-radius: 50%;
+    margin-right: 6px;
+    vertical-align: middle;
+  }
+
+  .tabs {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    margin-bottom: 1.25rem;
+  }
+
+  .tab {
+    padding: 7px 16px;
+    border-radius: 20px;
+    border: 1px solid var(--border);
+    font-size: 12px;
+    font-weight: 500;
+    cursor: pointer;
+    background: rgba(255,255,255,0.5);
+    color: var(--text-muted);
+    transition: all 0.15s ease;
+    font-family: 'Montserrat', sans-serif;
+  }
+
+  .tab.active {
+    background: var(--soft-purple);
+    border-color: var(--soft-purple);
+    color: var(--purple-deep);
+  }
+
+  .tab:hover:not(.active) {
+    background: rgba(255,255,255,0.8);
+    color: var(--dark-ink);
+  }
+
+  .randomize-bar {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 16px;
+    background: rgba(255,255,255,0.55);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    margin-bottom: 1.25rem;
+  }
+
+  .randomize-bar p {
+    font-size: 13px;
+    color: var(--text-muted);
+    flex: 1;
+    font-weight: 400;
+  }
+
+  .btn {
+    padding: 8px 18px;
+    border-radius: var(--radius-sm);
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    border: 1px solid var(--border);
+    background: transparent;
+    color: var(--dark-ink);
+    transition: all 0.15s;
+    font-family: 'Montserrat', sans-serif;
+  }
+
+  .btn:hover { background: rgba(255,255,255,0.7); }
+
+  .btn-primary {
+    background: var(--soft-purple);
+    border-color: var(--soft-purple);
+    color: var(--purple-deep);
+  }
+
+  .btn-primary:hover { background: #B9A4DC; }
+
+  .nav {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 1rem;
+  }
+
+  .nav-count {
+    font-size: 13px;
+    color: var(--text-muted);
+    flex: 1;
+    text-align: center;
+  }
+
+  .card {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 1.5rem;
+    backdrop-filter: blur(8px);
+  }
+
+  .card-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+  }
+
+  .badge {
+    font-size: 11px;
+    font-weight: 600;
+    padding: 4px 12px;
+    border-radius: 20px;
+    background: var(--lavender);
+    color: var(--purple-deep);
+    letter-spacing: 0.03em;
+  }
+
+  .category-label {
+    font-size: 11px;
+    color: var(--text-muted);
+    font-weight: 500;
+  }
+
+  .post-text {
+    font-size: 15px;
+    line-height: 1.75;
+    color: var(--dark-ink);
+    margin-bottom: 1rem;
+    white-space: pre-wrap;
+    font-weight: 400;
+  }
+
+  .gif-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 12px;
+    color: var(--text-muted);
+    padding: 5px 12px;
+    background: rgba(213, 232, 247, 0.5);
+    border: 1px solid rgba(181, 200, 232, 0.4);
+    border-radius: 20px;
+    margin-bottom: 1.25rem;
+    font-weight: 500;
+  }
+
+  .gif-pill::before {
+    content: "GIF";
+    font-size: 10px;
+    font-weight: 700;
+    color: var(--periwinkle);
+    letter-spacing: 0.05em;
+  }
+
+  .actions {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    padding-top: 1rem;
+    border-top: 1px solid var(--border);
+  }
+
+  .btn-copy.copied {
+    background: var(--lavender);
+    color: var(--purple-deep);
+    border-color: var(--soft-purple);
+  }
+
+  .empty {
+    text-align: center;
+    padding: 3rem 1rem;
+    color: var(--text-muted);
+    font-size: 14px;
+  }
+
+  .footer {
+    text-align: center;
+    margin-top: 2.5rem;
+    font-size: 12px;
+    color: var(--text-muted);
+    font-weight: 500;
+  }
+
+  .footer a {
+    color: var(--purple-mid);
+    text-decoration: none;
+  }
+
+  .section-tabs {
+    display: flex;
+    gap: 0;
+    margin-bottom: 1.75rem;
+    background: rgba(255,255,255,0.45);
+    border: 1px solid var(--border);
+    border-radius: 30px;
+    padding: 4px;
+    width: fit-content;
+  }
+
+  .section-tab {
+    padding: 8px 22px;
+    border-radius: 26px;
+    border: none;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    background: transparent;
+    color: var(--text-muted);
+    transition: all 0.2s ease;
+    font-family: 'Montserrat', sans-serif;
+    letter-spacing: 0.01em;
+  }
+
+  .section-tab.active {
+    background: var(--soft-purple);
+    color: var(--purple-deep);
+    box-shadow: 0 1px 4px rgba(83,74,183,0.15);
+  }
+
+  .section-tab:hover:not(.active) {
+    color: var(--dark-ink);
+    background: rgba(255,255,255,0.6);
+  }
+
+  .tot-section { display: none; }
+  .tot-section.visible { display: block; }
+  .posts-section { display: block; }
+  .posts-section.hidden { display: none; }
+
+  .tot-intro {
+    font-size: 13px;
+    color: var(--text-muted);
+    margin-bottom: 1.25rem;
+    font-weight: 400;
+  }
+
+  .field-row {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin-bottom: 1rem;
+  }
+
+  .field-group {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    flex: 1;
+    min-width: 150px;
+  }
+
+  .field-group label {
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--text-muted);
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+  }
+
+  .field-group input, .field-group select {
+    padding: 8px 12px;
+    border-radius: var(--radius-sm);
+    border: 1px solid var(--border);
+    font-size: 13px;
+    font-family: 'Montserrat', sans-serif;
+    background: rgba(255,255,255,0.7);
+    color: var(--dark-ink);
+    outline: none;
+  }
+
+  .field-group input:focus, .field-group select:focus {
+    border-color: var(--soft-purple);
+    background: white;
+  }
+
+  .gen-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 10px 24px;
+    border-radius: 30px;
+    border: none;
+    font-size: 13px;
+    font-weight: 700;
+    cursor: pointer;
+    background: var(--soft-purple);
+    color: var(--purple-deep);
+    font-family: 'Montserrat', sans-serif;
+    letter-spacing: 0.02em;
+    transition: all 0.15s;
+    margin-top: 4px;
+  }
+
+  .gen-btn:hover { background: #B9A4DC; }
+  .gen-btn:disabled { opacity: 0.5; cursor: not-allowed; }
+
+  .tot-output { margin-top: 1.25rem; }
+
+  .tot-card {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 1.5rem;
+    backdrop-filter: blur(8px);
+  }
+
+  .tot-title {
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--dark-ink);
+    margin-bottom: 4px;
+    letter-spacing: 0.01em;
+  }
+
+  .tot-sub {
+    font-size: 13px;
+    color: var(--text-muted);
+    margin-bottom: 1.1rem;
+    font-weight: 400;
+  }
+
+  .tot-questions {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+    margin-bottom: 1.1rem;
+  }
+
+  .tot-questions li {
+    font-size: 14px;
+    color: var(--dark-ink);
+    line-height: 1.5;
+    padding: 7px 12px;
+    background: rgba(232, 213, 242, 0.3);
+    border-radius: var(--radius-sm);
+    border: 1px solid rgba(200,181,232,0.25);
+    font-weight: 400;
+  }
+
+  .tot-gif-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    font-size: 12px;
+    color: var(--text-muted);
+    padding: 5px 14px;
+    background: rgba(213, 232, 247, 0.5);
+    border: 1px solid rgba(181, 200, 232, 0.4);
+    border-radius: 20px;
+    margin-bottom: 1.1rem;
+    font-weight: 500;
+  }
+
+  .tot-gif-label {
+    font-size: 10px;
+    font-weight: 700;
+    color: var(--periwinkle);
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+
+  .tot-actions {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    padding-top: 1rem;
+    border-top: 1px solid var(--border);
+  }
+
+  .tot-loading {
+    text-align: center;
+    padding: 2.5rem 1rem;
+    color: var(--text-muted);
+    font-size: 14px;
+  }
+
+  .tot-error {
+    padding: 10px 14px;
+    background: rgba(240,153,123,0.15);
+    border: 1px solid rgba(216,90,48,0.2);
+    border-radius: var(--radius-sm);
+    color: #712B13;
+    font-size: 13px;
+    margin-top: 1rem;
+  }
+</style>
+</head>
+<body>
+<div class="container">
+
+  <div class="header">
+    <span class="eyebrow"><span class="accent-dot"></span>Spiritual Business Skool</span>
+    <h1>Skool Engagement Post Generator</h1>
+    <p>Short-form prompts that spark real conversations in your community</p>
+  </div>
+
+  <div class="section-tabs">
+    <button class="section-tab active" id="st-posts" onclick="switchSection('posts')">Engagement posts</button>
+    <button class="section-tab" id="st-tot" onclick="switchSection('tot')">This or That ✨</button>
+  </div>
+
+  <div class="posts-section" id="posts-section">
+    <div class="tabs" id="tabs"></div>
+    <div class="randomize-bar">
+      <p>Want something random? ✨</p>
+      <button class="btn btn-primary" onclick="showRandom()">Surprise me</button>
+    </div>
+    <div id="nav-area" style="display:none;" class="nav">
+      <button class="btn" onclick="prevPost()">← Prev</button>
+      <span class="nav-count" id="nav-count"></span>
+      <button class="btn" onclick="nextPost()">Next →</button>
+    </div>
+    <div id="posts-container"></div>
+  </div>
+
+  <div class="tot-section" id="tot-section">
+    <p class="tot-intro">Tell us about your community and we'll generate 6 on-brand This or That questions — ready to copy straight into Skool.</p>
+    <div class="field-row">
+      <div class="field-group">
+        <label>Your niche / community topic</label>
+        <input type="text" id="tot-niche" placeholder="e.g. spiritual entrepreneurs, healers" />
+      </div>
+      <div class="field-group">
+        <label>Vibe / tone</label>
+        <select id="tot-vibe">
+          <option value="fun and playful">Fun &amp; playful</option>
+          <option value="woo and spiritual">Woo &amp; spiritual</option>
+          <option value="business focused">Business focused</option>
+          <option value="lifestyle and values">Lifestyle &amp; values</option>
+          <option value="mix of business and woo">Business + woo mix</option>
+        </select>
+      </div>
+      <div class="field-group">
+        <label>Theme (optional)</label>
+        <input type="text" id="tot-theme" placeholder="e.g. morning routines, money, content" />
+      </div>
+    </div>
+    <button class="gen-btn" id="gen-btn" onclick="generateToT()">Generate questions ✨</button>
+    <div class="tot-output" id="tot-output"></div>
+  </div>
+
+  <div class="footer">
+    <a href="https://skool.com/amanda" target="_blank">skool.com/amanda</a>
+  </div>
+
+</div>
+
+<script>
+const data = {
+  "Community vibes": [
+    { text: "Unpopular opinion in your niche? Go. 👇\n(drop yours below — no softening it 😂)", gif: "Judge Judy leaning forward", type: "Unpopular Opinion" },
+    { text: "Current business vibe check — which era are you in? 😅\n🌱 planting seeds | 🔥 on fire | 😴 rest era | 🤯 figuring it out", gif: "Someone checking the vibes with sunglasses on", type: "Vibe Check" },
+    { text: "Rate your niche's drama level 1–10 😂\n(1 = zen af, 10 = I need a therapist after every DM)", gif: "Someone slowly raising their hand", type: "Rate Your Niche" },
+    { text: "Two truths and a lie about your business. Go. We'll guess 👇😂", gif: "Wheel of Fortune spinning", type: "Two Truths One Lie" },
+  ],
+  "Wins & brags": [
+    { text: "Humble brag pass — go. 🏆\nOne win. Recent. Real. Drop it.", gif: "Legally Blonde 'what, like it's hard?'", type: "Humble Brag Pass" },
+    { text: "What's a message from a client you screenshot and saved forever? 💌\nYou don't have to share it word for word — just tell us what it said in general. Those are the ones that matter.", gif: "Someone crying happy tears", type: "Client Messages" },
+    { text: "What's one result you've helped create that you're genuinely proud of? 🏆\nShare the transformation (no names needed). Let's hype each other up.", gif: "Standing ovation", type: "Credibility Builder" },
+    { text: "What's the fastest win you've gotten a client in the last 30 days? ⚡\nShare it below in 2–3 sentences. Let's celebrate each other's results.", gif: "Confetti explosion", type: "Quick Win" },
+  ],
+  "Hot takes": [
+    { text: "I'll start: most spiritual entrepreneurs are undercharging not because of their prices but because of their CONTENT. 🔥\nAgree, disagree, or add yours below 👇", gif: "Throwing a grenade and walking away", type: "Hot Take Roulette" },
+    { text: "Drop your most controversial take about spiritual business / visibility / money 🔥\nOne sentence. No caveats.", gif: "Mic drop", type: "Controversial Take" },
+    { text: "What's your biggest marketing ick? 😬\nDrop yours below — let's build the do-not-do list together.", gif: "Full body shudder/cringe", type: "The Ick List" },
+  ],
+  "Fill in the blank": [
+    { text: "Finish this sentence: \"My clients always come to me because ___\" ✨\nDrop it below. No overthinking.", gif: "Someone furiously typing", type: "Finish The Sentence" },
+    { text: "My clients would roast me for ___\nI'll go first 👇", gif: "Sitting around a campfire roasting marshmallows", type: "Client Roast" },
+    { text: "Give us permission to do something today 🫶\nOne sentence. Something your audience needs to hear.", gif: "Warm hug energy", type: "Permission Post" },
+  ],
+  "Your magic": [
+    { text: "Teach us something in 60 seconds or less 🎉\nWhat's one thing your audience pays you to know?", gif: "Someone nodding furiously", type: "60-Second Teaching" },
+    { text: "What does your business look like when you're fully in your design? ✨\nShare one thing that changed when you stopped doing it the 'normal' way.", gif: "Butterfly transformation", type: "In Your Design" },
+    { text: "What's the #1 question your audience always asks you? 💬\nAnswer it in 3 sentences or less.", gif: "Someone pointing finger guns", type: "Top Question" },
+    { text: "Who do you help and what transformation do you create? 🙋\nWrite it like you'd say it to a stranger at a coffee shop.", gif: "Coffee shop chat energy", type: "Founder Story" },
+    { text: "What's the weirdest/most niche thing you help people with? 😂\nBonus points if it makes me say 'wait that's a thing?!'", gif: "Double take reaction", type: "Niche Flex" },
+  ]
+};
+
+const categories = Object.keys(data);
+let activeCategory = null;
+let showAll = true;
+let currentIndex = 0;
+
+function renderTabs() {
+  const container = document.getElementById('tabs');
+  container.innerHTML = '';
+  const allBtn = document.createElement('button');
+  allBtn.className = 'tab' + (showAll ? ' active' : '');
+  allBtn.textContent = 'All';
+  allBtn.onclick = () => { showAll = true; activeCategory = null; currentIndex = 0; renderPosts(); renderTabs(); };
+  container.appendChild(allBtn);
+  categories.forEach(cat => {
+    const btn = document.createElement('button');
+    btn.className = 'tab' + (!showAll && activeCategory === cat ? ' active' : '');
+    btn.textContent = cat;
+    btn.onclick = () => { showAll = false; activeCategory = cat; currentIndex = 0; renderPosts(); renderTabs(); };
+    container.appendChild(btn);
+  });
+}
+
+function getCurrentPosts() {
+  if (showAll) return categories.flatMap(cat => data[cat].map(p => ({...p, category: cat})));
+  return (data[activeCategory] || []).map(p => ({...p, category: activeCategory}));
+}
+
+function renderPosts() {
+  const posts = getCurrentPosts();
+  const container = document.getElementById('posts-container');
+  const navArea = document.getElementById('nav-area');
+  container.innerHTML = '';
+
+  if (posts.length === 0) {
+    container.innerHTML = '<div class="empty">No posts in this category yet.</div>';
+    navArea.style.display = 'none';
+    return;
+  }
+
+  if (currentIndex >= posts.length) currentIndex = 0;
+
+  navArea.style.display = 'flex';
+  document.getElementById('nav-count').textContent = `${currentIndex + 1} of ${posts.length}`;
+
+  const post = posts[currentIndex];
+  const escaped = post.text.replace(/\\/g, '\\\\').replace(/`/g, '\\`');
+  const card = document.createElement('div');
+  card.className = 'card';
+  card.innerHTML = `
+    <div class="card-top">
+      <span class="badge">${post.type}</span>
+      <span class="category-label">${post.category}</span>
+    </div>
+    <div class="post-text">${post.text}</div>
+    <div class="gif-pill">${post.gif}</div>
+    <div class="actions">
+      <button class="btn btn-copy" id="copy-btn" onclick="copyPost(this, \`${escaped}\`)">Copy post</button>
+    </div>
+  `;
+  container.appendChild(card);
+}
+
+function prevPost() {
+  const posts = getCurrentPosts();
+  currentIndex = (currentIndex - 1 + posts.length) % posts.length;
+  renderPosts();
+}
+
+function nextPost() {
+  const posts = getCurrentPosts();
+  currentIndex = (currentIndex + 1) % posts.length;
+  renderPosts();
+}
+
+function showRandom() {
+  const posts = getCurrentPosts();
+  currentIndex = Math.floor(Math.random() * posts.length);
+  renderPosts();
+}
+
+function copyPost(btn, text) {
+  navigator.clipboard.writeText(text).then(() => {
+    btn.textContent = 'Copied!';
+    btn.classList.add('copied');
+    setTimeout(() => { btn.textContent = 'Copy post'; btn.classList.remove('copied'); }, 2000);
+  });
+}
+
+renderTabs();
+renderPosts();
+
+function switchSection(section) {
+  const postsSection = document.getElementById('posts-section');
+  const totSection = document.getElementById('tot-section');
+  const stPosts = document.getElementById('st-posts');
+  const stTot = document.getElementById('st-tot');
+  if (section === 'posts') {
+    postsSection.classList.remove('hidden');
+    totSection.classList.remove('visible');
+    stPosts.classList.add('active');
+    stTot.classList.remove('active');
+  } else {
+    postsSection.classList.add('hidden');
+    totSection.classList.add('visible');
+    stPosts.classList.remove('active');
+    stTot.classList.add('active');
+  }
+}
+
+async function generateToT() {
+  const niche = document.getElementById('tot-niche').value.trim() || 'spiritual entrepreneurs';
+  const vibe = document.getElementById('tot-vibe').value;
+  const theme = document.getElementById('tot-theme').value.trim();
+  const btn = document.getElementById('gen-btn');
+  const out = document.getElementById('tot-output');
+
+  btn.disabled = true;
+  btn.textContent = 'Generating...';
+  out.innerHTML = '<div class="tot-loading">Crafting your questions... ✨</div>';
+
+  const themeNote = theme
+    ? 'The questions should be themed around: ' + theme + '.'
+    : 'Mix up the themes — cover work habits, tools, energy/mindset, lifestyle, and business strategy.';
+
+  const prompt = 'You are writing a "This or That Fridays" post for a Skool community of ' + niche + '. The tone should be ' + vibe + '. ' + themeNote + '\n\nGenerate exactly 6 This or That questions with emojis. Each question: two choices separated by "or", with a relevant emoji for each choice. Keep them punchy, fun, and relatable to the community.\n\nAlso suggest ONE specific GIF that would be perfect to post with this (describe the exact GIF to search for, e.g. \"Seth Meyers both? both. both is good\").\n\nRespond ONLY in this exact JSON format, no extra text, no markdown:\n{\n  \"title\": \"THIS OR THAT FRIDAY [add 1-2 fun emojis]\",\n  \"subtitle\": \"Pick one from each!\",\n  \"questions\": [\n    \"Choice A [emoji] or Choice B [emoji]\",\n    \"Choice A [emoji] or Choice B [emoji]\",\n    \"Choice A [emoji] or Choice B [emoji]\",\n    \"Choice A [emoji] or Choice B [emoji]\",\n    \"Choice A [emoji] or Choice B [emoji]\",\n    \"Choice A [emoji] or Choice B [emoji]\"\n  ],\n  \"gif\": \"Exact GIF description to search\"\n}';
+
+  try {
+    const res = await fetch('https://api.anthropic.com/v1/messages', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        model: 'claude-sonnet-4-20250514',
+        max_tokens: 1000,
+        messages: [{ role: 'user', content: prompt }]
+      })
+    });
+    const data = await res.json();
+    const text = data.content && data.content.find(b => b.type === 'text') ? data.content.find(b => b.type === 'text').text : '';
+    const clean = text.replace(/```json|```/g, '').trim();
+    const parsed = JSON.parse(clean);
+    renderToT(parsed);
+  } catch(e) {
+    out.innerHTML = '<div class="tot-error">Something went wrong — please try again.</div>';
+  }
+
+  btn.disabled = false;
+  btn.textContent = 'Generate questions ✨';
+}
+
+function renderToT(d) {
+  const numbered = d.questions.map((q, i) => (i+1) + '️⃣ ' + q).join('\n');
+  const fullPost = d.title + '\n\n' + d.subtitle + '\n\n' + numbered;
+
+  const liItems = d.questions.map((q, i) =>
+    '<li>' + (i+1) + '&#65039;&#8419; ' + q + '</li>'
+  ).join('');
+
+  document.getElementById('tot-output').innerHTML =
+    '<div class="tot-card">' +
+      '<div class="tot-title">' + d.title + '</div>' +
+      '<div class="tot-sub">' + d.subtitle + '</div>' +
+      '<ul class="tot-questions">' + liItems + '</ul>' +
+      '<div class="tot-gif-pill"><span class="tot-gif-label">GIF</span>' + d.gif + '</div>' +
+      '<div class="tot-actions">' +
+        '<button class="btn btn-copy" id="tot-copy-btn" onclick="copyToT(this)">Copy post</button>' +
+        '<button class="btn" onclick="generateToT()">Regenerate</button>' +
+      '</div>' +
+    '</div>';
+
+  window._lastTotPost = fullPost;
+}
+
+function copyToT(btn) {
+  const text = window._lastTotPost || '';
+  navigator.clipboard.writeText(text).then(() => {
+    btn.textContent = 'Copied!';
+    btn.classList.add('copied');
+    setTimeout(() => { btn.textContent = 'Copy post'; btn.classList.remove('copied'); }, 2000);
+  });
+}
+</script>
+</body>
+</html>
